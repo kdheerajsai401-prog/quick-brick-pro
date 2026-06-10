@@ -29,21 +29,18 @@ export default function Hero() {
         <source src={videoSrc} type="video/mp4" />
       </video>
 
-      {/* Blue tint for brand cohesion + legibility scrims */}
-      <div className="absolute inset-0 bg-navy/25 mix-blend-multiply" aria-hidden="true" />
+      {/* Legibility scrims: blue anchored on the left/edges, video kept clear */}
       <div
-        className="absolute inset-0 bg-gradient-to-b from-navy/55 via-navy/30 to-navy/85"
+        className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/25 to-transparent"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/40 to-transparent"
+        className="absolute inset-0 bg-gradient-to-b from-navy/40 via-transparent to-navy/65"
         aria-hidden="true"
       />
-      {/* Extra darkening on mobile, where text sits over a busier portrait crop */}
-      <div className="absolute inset-0 bg-navy/35 md:hidden" aria-hidden="true" />
 
       <div className="relative z-30 flex min-h-[100svh] flex-col justify-center px-6 pb-16 pt-32 sm:px-10 sm:pt-36 lg:px-16 lg:pt-40">
-        <div className="max-w-4xl">
+        <div className="max-w-4xl [text-shadow:0_2px_16px_rgba(8,18,32,0.6)]">
           <div className="animate-fade-up mb-6 flex items-center gap-3 lg:mb-8">
             <ShieldCheck className="h-4 w-4 text-white/70" />
             <span className="font-inter text-xs uppercase tracking-[0.3em] text-white/70 sm:text-sm">
