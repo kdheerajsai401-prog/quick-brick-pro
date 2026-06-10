@@ -1,6 +1,5 @@
 import { ArrowUpRight, Award, ShieldCheck } from 'lucide-react';
-
-const HERO_VIDEO = '/assets/video/hero.mp4';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const STATS = [
   { value: '5,000+', label: 'Satisfied Clients' },
@@ -9,17 +8,25 @@ const STATS = [
 ];
 
 export default function Hero() {
+  const isMobile = useIsMobile();
+  const videoSrc = isMobile ? '/assets/video/hero-mobile.mp4' : '/assets/video/hero.mp4';
+  const posterSrc = isMobile
+    ? '/assets/video/hero-mobile-poster.jpg'
+    : '/assets/video/hero-poster.jpg';
+
   return (
     <section id="top" className="relative min-h-[100svh] w-full overflow-hidden bg-navy">
-      {/* Background video */}
+      {/* Background video: portrait crop on mobile, landscape on desktop */}
       <video
+        key={videoSrc}
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
         muted
         loop
         playsInline
+        poster={posterSrc}
       >
-        <source src={HERO_VIDEO} type="video/mp4" />
+        <source src={videoSrc} type="video/mp4" />
       </video>
 
       {/* Blue tint for brand cohesion + legibility scrims */}
@@ -32,6 +39,8 @@ export default function Hero() {
         className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/40 to-transparent"
         aria-hidden="true"
       />
+      {/* Extra darkening on mobile, where text sits over a busier portrait crop */}
+      <div className="absolute inset-0 bg-navy/35 md:hidden" aria-hidden="true" />
 
       <div className="relative z-30 flex min-h-[100svh] flex-col justify-center px-6 pb-16 pt-32 sm:px-10 sm:pt-36 lg:px-16 lg:pt-40">
         <div className="max-w-4xl">
